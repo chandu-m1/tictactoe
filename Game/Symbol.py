@@ -1,2 +1,3 @@
 class Symbol:
-    pass
+    def __init__(self,char):
+        self.__char = char
