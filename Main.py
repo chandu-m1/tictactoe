@@ -1,5 +1,40 @@
+from GameController.GameController import GameController
+from Game.GameStatus import GameStatus
+from Game.Player import Player
+from Game.Symbol import Symbol
+from Game.PlayerType import PlayerType
+from Game.Bot import Bot
+from Strategies.WinningStrategies.RowWinningStrategy import RowWinningStategy
+from Strategies.WinningStrategies.ColumnWinningStrategy import ColumnWinningStrategy
+from Strategies.WinningStrategies.DiagonalWinningStrategy import DiagonalWinningStrategy
 class Main:
-    pass
+    def main(self):
+        #create a game
+        gameController = GameController()
+        try:
+            game = gameController.createGame(3,[Player(Symbol("x"),"Chandu",PlayerType.HUMAN), Bot(Symbol("O"),"Rahul",PlayerType.BOT)],[RowWinningStategy(), ColumnWinningStrategy(),DiagonalWinningStrategy()])
+        except:
+            print("Something went wrong")
+            game.setgameStatus(GameStatus.ENDED)
+
+        # while game status is in progress
+        while(gameController.getGameStatus(game) == GameStatus.IN_Progress):
+            #print board
+            gameController.displayBoard(game)
+            #print if undo
+            print("Do you want to undo? (y/n)")
+            #if yes call undo
+            inp = input()
+            if(inp == "yes" or inp == "YES"):
+                gameController.undo(game)
+            else:
+                gameController.makeMove(game)
+    
+        #check game status
+        gameController.printResult(game)
+
 
 if __name__ == "__main__":
-    pass
+    main = Main()
+    main.main()
+

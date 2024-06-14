@@ -1,4 +1,4 @@
-from CellState import CellState
+from Game.CellState import CellState
 class Cell:
     def __init__(self,row,col):
         self.__row = row
@@ -6,34 +6,26 @@ class Cell:
         self.__cellState = CellState.EMPTY
         self.__player = None
 
-    @property
-    def _row(self):
+    def getrow(self):
         return self.__row
 
-    @_row.setter
-    def _row(self, value):
+    def setrow(self, value):
         self.__row = value
 
-    @property
-    def _col(self):
+    def getcol(self):
         return self.__col
 
-    @_col.setter
-    def _col(self, value):
+    def setcol(self, value):
         self.__col = value
 
-    @property
-    def _cellState(self):
+    def getcellState(self):
         return self.__cellState
 
-    @_cellState.setter
-    def _cellState(self, value):
+    def setcellState(self, value):
         self.__cellState = value
 
-    @property
-    def _player(self):
+    def getplayer(self):
         return self.__player
 
-    @_player.setter
-    def _player(self, value):
+    def setplayer(self, value):
         self.__player = value

@@ -1,16 +1,20 @@
+from Game.Game import Game
 class GameController:
-    def createGame():
-        pass
+    def createGame(self,dimensions,players,winningstrategies):
+        return Game().getbuilder().setdimensions(dimensions).setplayers(players).setwinningstrategies(winningstrategies).build()
 
     def displayBoard(self,game):
-        game.displayBoard()
+        game.printBoard()
 
     def undo(self,game):
         pass
 
     def makeMove(self,game):
-        pass
+        game.makemove()
+
+    def getGameStatus(self,game):
+        return game.getgamestatus()
 
     def printResult(self,game):
-        pass
+        game.printresult()
 

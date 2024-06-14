@@ -1,4 +1,4 @@
-import WinningStrategy
-class DiagonalWinningStrategy(WinningStrategy):
+from Strategies.WinningStrategies.WinningStrategy import Winningstrategy
+class DiagonalWinningStrategy(Winningstrategy):
     def checkWinner(self,board,move):
-        pass
+        print("Diagonal winning strategy")
