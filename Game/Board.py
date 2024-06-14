@@ -9,7 +9,7 @@ class Board:
     def getdim(self):
         return self.__dim
 
-    def getdim(self, value):
+    def setdim(self, value):
         self.__dim = value
 
     def getboard(self):
@@ -20,13 +20,13 @@ class Board:
 
 
     def print(self):
-        for i in range(0,self.dim):
-            print("|")
-            for j in range(0,self.dim):
+        for i in range(0,self.__dim):
+            print("|",end ="")
+            for j in range(0,self.__dim):
                 cell = self.__board[i][j]
-                if(cell.getcellState == CellState.EMPTY):
-                    print(" - |", sep="")
+                if(cell.getcellState() == CellState.EMPTY):
+                    print(" - |", end="")
                 else:
-                    print(" "+cell.getplayer().getsymbol().getachar()+" |",sep="")
+                    print(" "+cell.getplayer().getsymbol().getchar()+" |",end="")
             print()
         

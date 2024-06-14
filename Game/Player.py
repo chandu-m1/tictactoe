@@ -1,3 +1,4 @@
+from Game.Cell import Cell
 class Player:
     def __init__(self,symbol,name,playerType):
         self.__symbol = symbol
@@ -19,5 +20,10 @@ class Player:
         self.__playerType = value
 
 
-    def makemove(self):
-        pass
+    def makemove(self,board):
+        print("Enter row number")
+        row = int(input())
+        print("Enter column number")
+        col = int(input())
+        cell = Cell(row,col)
+        return cell

@@ -59,25 +59,26 @@ class Game:
     def validatemove(self,cell):
         row = cell.getrow()
         col = cell.getcol()
+        print(self.__board.getdim())
         if(row<0 or col<0 or row>=self.__board.getdim() or col >= self.__board.getdim()):
             return False
-        if(self.__board.getboard()[row][col].getcellstate() == CellState.EMPTY):
+        if(self.__board.getboard()[row][col].getcellState() == CellState.EMPTY):
             return True
         return False
 
     def makemove(self):
         currentPlayer = self.__players[self.__currentPlayer]
-        proposedcell = currentPlayer.makemove()
+        proposedcell = currentPlayer.makemove(self.__board)
         if(not self.validatemove(proposedcell)):
             return
         cellinboard = self.__board.getboard()[proposedcell.getrow()][proposedcell.getcol()]
-        cellinboard.setcellstate(CellState.FILLED)
+        cellinboard.setcellState(CellState.FILLED)
         cellinboard.setplayer(currentPlayer)
 
         move = Move(currentPlayer, cellinboard)
         self.__moves.append(move)
         for winninstrategy in self.__winningStrategies:
-            if(winninstrategy.checkwinner(self.__board,move)):
+            if(winninstrategy.checkWinner(self.__board,move)):
                 self.__gameStatus = GameStatus.ENDED
                 self.__winner = currentPlayer
                 return
@@ -113,23 +114,24 @@ class Game:
             return self
         
         def valid(self):
+            print(self.__players)
             if(len(self.__players)<2):
                 return False
-            if(len(self.__players)!= self.__dimesion):
+            if(len(self.__players)!= self.__dimesion-1):
                 return False
             botCount = 0
             for player in self.__players:
                 if(player.getplayertype() == PlayerType.BOT):
                     botCount +=1
-            
+            print(botCount)
             if(botCount>=2):
                 return False
             
             symbols= set()
             for player in self.__players:
-                if player.getsymbol.getachar() in symbols:
+                if player.getsymbol().getchar() in symbols:
                     return False
-                symbols.add(player.getsymbol.getachar())
+                symbols.add(player.getsymbol().getchar())
             return True
 
 

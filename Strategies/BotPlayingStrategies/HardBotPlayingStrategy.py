@@ -1,4 +1,4 @@
-from BotPlayingStrategies.BotPlayingStrategy import BotPlayingStrategy
+from Strategies.BotPlayingStrategies.BotPlayingStrategy import BotPlayingStrategy
 
 class HardBotPlayingStrategy(BotPlayingStrategy):
     def makeMove(board):
